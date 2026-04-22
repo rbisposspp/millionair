@@ -1,0 +1,32 @@
+{
+  "name": "bobby-live-esl",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "seed:questions": "node scripts/seed-questions.mjs",
+    "generate:images": "node scripts/generate-imagen-assets.mjs",
+    "generate:tts": "node scripts/generate-tts-assets.mjs"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "^7.11.5",
+    "@google-cloud/storage": "^7.16.0",
+    "@google/genai": "^1.33.0",
+    "next": "^16.0.10",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "wav": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.10",
+    "typescript": "^5.9.3"
+  }
+}
