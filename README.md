@@ -1,136 +1,44 @@
 # Bobby Millionaire ESL
 
-Jogo de ingles no estilo programa de TV, com Bobby como host e uma escada de 25 perguntas de multipla escolha.
+## What it is
+Bobby Millionaire ESL is a game-show-style quiz app for English learning. It uses a 25-question ladder from A1 to C1, multiple-choice gameplay, and optional AI support to create a teacher-led review activity with a strong classroom rhythm.
 
-## Como funciona
+## Who it is for
+This project is built for ESL teachers who want a lively review format for online lessons, classroom warm-ups, or guided practice. It also fits adult learners who benefit from short rounds, visible progression, and clear difficulty levels.
 
-- 25 perguntas por partida
-- 5 perguntas de `A1`
-- 5 perguntas de `A2`
-- 5 perguntas de `B1`
-- 5 perguntas de `B2`
-- 5 perguntas de `C1`
-- um erro encerra a partida
-- tres recursos unicos por jogo:
-  - `Consultar Bobby`
-  - `Pular`
-  - `Cortar 1 errada`
+## Main features
+- 25-question ladder with A1 to C1 progression
+- Multiple-choice gameplay with one wrong answer ending the run
+- Three support actions: ask Bobby, skip, and remove one wrong option
+- Teacher recap at the end of the session
+- Optional AI-generated support through Gemini integration
+- Local in-memory mode for running the app without Firestore
 
-O jogador começa no bloco `A1` e sobe nivel por nivel ate `C1`. Se completar a escada inteira, ganha o premio final `BIG Corn Milhao`.
+## Teaching value
+The app turns grammar, vocabulary, functional language, and listening review into a structured speaking-friendly activity. Teachers can use it to recycle language quickly, keep energy high, and end a session with a clear recap of learner performance.
 
-## Destaques
-
-- interface inspirada em game show
-- Bobby comenta as respostas e pode dar um palpite quando consultado
-- animacao de suspense ao confirmar resposta
-- efeitos sonoros sintetizados no cliente para tensao, acerto e erro
-- suporte a perguntas com texto, imagem e audio
-- resumo final para o professor
-
-## Stack
-
-- `Next.js 16`
-- `React 19`
-- `TypeScript`
+## Tech stack
+- Next.js
+- React
+- TypeScript
 - `@google/genai`
-- `Firestore` opcional para persistencia
-- banco em memoria para demo local
+- Firestore (optional)
 
-## Rodando localmente
-
-Instale as dependencias:
+## How to run
+Install dependencies and create a local environment file:
 
 ```bash
 npm install
 cp .env.example .env.local
 ```
 
-Para demo local, use o banco em memoria:
+Set the required values in `.env.local`, then start the local demo with the in-memory store:
 
 ```bash
-BOBBY_USE_MEMORY_STORE=1 GEMINI_API_KEY=SEU_TOKEN npm run dev -- --hostname localhost
+BOBBY_USE_MEMORY_STORE=1 npm run dev
 ```
 
-Abra:
+Open `http://localhost:3000`.
 
-```text
-http://localhost:3000
-```
-
-Observacoes:
-
-- `BOBBY_USE_MEMORY_STORE=1` evita dependencia de Firestore para testes locais.
-- a aplicacao web atual usa `GEMINI_API_KEY` para as chamadas do Bobby.
-- os scripts de geracao de assets usam Vertex AI.
-
-## Variaveis de ambiente
-
-Veja `.env.example`.
-
-Principais variaveis:
-
-- `GEMINI_API_KEY`
-- `BOBBY_USE_MEMORY_STORE`
-- `GOOGLE_CLOUD_PROJECT`
-- `GOOGLE_CLOUD_LOCATION`
-- `FIRESTORE_DATABASE_ID`
-- `MEDIA_BUCKET`
-
-## Scripts
-
-- `npm run dev`
-- `npm run build`
-- `npm run start`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run seed:questions`
-- `npm run generate:images`
-- `npm run generate:tts`
-
-## Verificacao
-
-```bash
-npm run typecheck
-npm run lint
-npm run build
-```
-
-## Seed e assets
-
-Para gravar o banco de perguntas no Firestore:
-
-```bash
-GOOGLE_CLOUD_PROJECT=noble-velocity-492304-b6 npm run seed:questions
-```
-
-Para gerar assets de imagem com Vertex AI:
-
-```bash
-gcloud auth application-default login
-GOOGLE_CLOUD_PROJECT=noble-velocity-492304-b6 GOOGLE_CLOUD_LOCATION=us-central1 npm run generate:images
-```
-
-Para gerar assets de audio:
-
-```bash
-GOOGLE_CLOUD_PROJECT=noble-velocity-492304-b6 GOOGLE_CLOUD_LOCATION=us-central1 npm run generate:tts
-```
-
-## Deploy
-
-O projeto foi pensado para rodar em Cloud Run.
-
-Em producao:
-
-- prefira `Secret Manager` para `GEMINI_API_KEY`
-- use Firestore para sessoes persistentes
-- use `MEDIA_BUCKET` para servir audio e imagem das perguntas
-
-## Status atual
-
-O jogo foi migrado do formato antigo de resposta aberta para:
-
-- escada fixa de 25 perguntas
-- somente multipla escolha
-- progressao automatica por dificuldade
-- eliminacao imediata no primeiro erro
+## Notes
+Persistent storage and media generation are optional. The repository includes `.env.example`, but no private keys or production secrets should be committed.
